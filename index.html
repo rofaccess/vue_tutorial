@@ -7,7 +7,47 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
+        Contador: {{contador}}
+        <button type="button" v-on:click="stopInterval">{{btnMsg}}</button>
+    </div>
+    <hr>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        
+        const holaMundo = {
+            data() {
+                return {
+                    contador: 0,
+                    interval: null,
+                    isRunning: false,
+                    btnMsg: "Detener"
+                }
+            },
+            mounted() {
+                this.startInterval();
+            },
+            methods: {
+                startInterval(){
+                    this.interval = setInterval(() => {
+                        this.contador ++; 
+                    }, 500);
+                    this.isRunning = true;
+                    this.btnMsg = "Detener";
+                },
+                stopInterval(){
+                    if(this.isRunning){
+                        clearInterval(this.interval);
+                        this.isRunning = false;
+                        this.btnMsg = "Continuar"
+                    }else{
+                        this.startInterval();   
+                    }                    
+                }
+            }
+        }
 
+        var mountedApp = Vue.createApp(holaMundo).mount("#app")
+    </script>    
 </body>
 </html>
