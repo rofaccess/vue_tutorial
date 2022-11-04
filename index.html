@@ -7,21 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-        Contador: {{contador}}
-        <button type="button" v-on:click="stopInterval">{{btnMsg}}</button>
+    <div id="contador-app">
+        <label :data-counter="0">Contador</label>: {{contador}}        
+        <button type="button" :title="titulo" v-on:click="stopInterval">{{btnMsg}}</button>
     </div>
     <hr>
+    <div id="imagen-app">
+        <button type="button" v-on:click="mostrarImagen('css.png')">Mostrar CSS</button>
+        <button type="button" v-on:click="mostrarImagen('html.png')">Mostrar HTML</button>
+        <hr>
+        <img v-bind:src="imageSrc" heigt="100" width="100">
+    </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
         
-        const holaMundo = {
+        const contador = {
             data() {
                 return {
                     contador: 0,
                     interval: null,
                     isRunning: false,
-                    btnMsg: "Detener"
+                    btnMsg: "Detener", 
+                    titulo: "Detener o continuar contador"
                 }
             },
             mounted() {
@@ -39,7 +46,7 @@
                     if(this.isRunning){
                         clearInterval(this.interval);
                         this.isRunning = false;
-                        this.btnMsg = "Continuar"
+                        this.btnMsg = "Continuar";
                     }else{
                         this.startInterval();   
                     }                    
@@ -47,7 +54,22 @@
             }
         }
 
-        var mountedApp = Vue.createApp(holaMundo).mount("#app")
+        const imagen = {
+            data() {
+                return {
+                    imageSrc: ""
+                }                
+            },
+            methods: {
+                mostrarImagen(imageSrc){
+                    this.imageSrc = imageSrc;
+                    console.log(this.imageSrc);
+                }
+            }
+        }
+
+        var mountedApp = Vue.createApp(contador).mount("#contador-app");
+        var mountedApp = Vue.createApp(imagen).mount("#imagen-app");
     </script>    
 </body>
 </html>
