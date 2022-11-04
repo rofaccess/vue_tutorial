@@ -18,7 +18,29 @@
         <hr>
         <img v-bind:src="imageSrc" heigt="100" width="100">
     </div>
+
+    <hr>
+    <div id="modelo-app">
+        <label>Escribe tu nombre: </label>
+        <input type="text" v-model="nombre">
+        <br>
+        Hola {{nombre}}
+        <br>
+        <br>
+        
+        <select v-model="fruta">
+            <option value="manzana">Manzana</option>
+            <option value="pera">Pera</option>
+            <option value="uva">Uva</option>
+        </select>
+        Fruta seleccionada: {{fruta}}
+
+        <input type="checkbox" v-model="activo">
+        {{activo}}
+    </div>
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
     <script>
         // From: https://www.youtube.com/watch?v=JGN5TqaqnRg&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=2
         const contador = {
@@ -53,6 +75,8 @@
                 }
             }
         }
+
+        var mountedApp = Vue.createApp(contador).mount("#contador-app");
          
         // From: https://www.youtube.com/watch?v=5-SsRpGa9NM&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=3
         const imagen = {
@@ -69,8 +93,20 @@
             }
         }
 
-        var mountedApp = Vue.createApp(contador).mount("#contador-app");
-        var mountedApp = Vue.createApp(imagen).mount("#imagen-app");
+        var mountedApp2 = Vue.createApp(imagen).mount("#imagen-app");
+
+        // From: https://www.youtube.com/watch?v=iCoJC3P0ftQ&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=4
+        const modelo = {
+            data() {
+                return {
+                    nombre: "", 
+                    fruta: "",
+                    activo: false
+                }
+            }
+        }
+        
+        var mountedApp3 = Vue.createApp(modelo).mount("#modelo-app");
     </script>    
 </body>
 </html>
