@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="counter-app">
+    <label :data-counter="0">Counter</label>: {{counter}}
+    <button type="button" :title="title" v-on:click="stopInterval">{{btnMsg}}</button>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    // From: https://www.youtube.com/watch?v=JGN5TqaqnRg&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=2
+    const counter = {
+        data() {
+            return {
+                counter: 0,
+                interval: null,
+                isRunning: false,
+                btnMsg: "Stop",
+                title: "Stop or Continue counter"
+            }
+        },
+        // This method call when mounted app first time
+        mounted() {
+            this.startInterval();
+        },
+        methods: {
+            startInterval(){
+                this.interval = setInterval(() => {
+                    this.counter ++;
+                }, 500);
+                this.isRunning = true;
+                this.btnMsg = "Stop";
+            },
+            stopInterval(){
+                if(this.isRunning){
+                    clearInterval(this.interval);
+                    this.isRunning = false;
+                    this.btnMsg = "Continue";
+                }else{
+                    this.startInterval();
+                }
+            }
+        }
+    }
+
+    var counterApp = Vue.createApp(counter).mount("#counter-app");
+</script>
+</body>
+</html>

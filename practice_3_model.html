@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="model-app">
+        <label>Write your name: </label>
+        <input type="text" v-model="name">
+        <br>
+        Hello {{name}}
+        <br>
+        <br>
+        
+        <select v-model="fruit">
+            <option value="apple">Apple</option>
+            <option value="pear">Pear</option>
+            <option value="grape">Grape</option>
+        </select>
+        Selected Fruit: {{fruit}}
+
+        <input type="checkbox" v-model="active">
+        {{active}}
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        // From: https://www.youtube.com/watch?v=iCoJC3P0ftQ&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=4
+        const model = {
+            data() {
+                return {
+                    name: "",
+                    fruit: "",
+                    active: false
+                }
+            }
+        }
+        
+        var modelApp = Vue.createApp(model).mount("#model-app");
+    </script>    
+</body>
+</html>

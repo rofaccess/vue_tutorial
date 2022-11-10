@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="image-app">
+    <button type="button" v-on:click="showImage('css.png')">Show CSS</button>
+    <button type="button" v-on:click="showImage('html.png')">Show HTML</button>
+    <hr>
+    <img v-bind:src="imageSrc" heigt="100" width="100">
+</div>
+
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+    // From: https://www.youtube.com/watch?v=5-SsRpGa9NM&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r&index=3
+    const image = {
+        data() {
+            return {
+                imageSrc: ""
+            }
+        },
+        methods: {
+            showImage(imageSrc){
+                this.imageSrc = imageSrc;
+                console.log(this.imageSrc);
+            }
+        }
+    }
+
+    var imageApp = Vue.createApp(image).mount("#image-app");
+</script>
+</body>
+</html>
